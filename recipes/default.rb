@@ -2,7 +2,8 @@
 # Cookbook Name:: ec-tools
 # Recipe:: default
 #
-# Copyright 2014, YOUR_COMPANY_NAME
+# Copyright 2014, Chef
 #
 # All rights reserved - Do Not Redistribute
 #
+chef_gem 'knife-opc'
