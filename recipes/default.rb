@@ -6,4 +6,3 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-chef_gem 'knife-opc'
