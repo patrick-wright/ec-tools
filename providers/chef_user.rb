@@ -1,3 +1,5 @@
+require 'chef/config'
+
 def whyrun_supported?
   true
 end
@@ -7,9 +9,8 @@ def create_chef_user
 end
 
 def user_exists?
-  username = @new_resource.username
-  chef_rest = Chef::REST.new(Chef::Config[:chef_server_root]) # will need to config Chef::Config via api
-  result = @chef_rest.get_rest("users/#{user_name}") # what happens when user does not exist (exc or nil or '')
+  chef_rest = Chef::REST.new(configure_chef)
+  result = chef_rest.get_rest("users/#{@new_resource.username}") # what happens when user does not exist (exc or nil or '')
 end
 
 action :create do
@@ -32,4 +33,8 @@ end
 # action :modify do
 # end
 
+def configure_chef
+  Chef::Config[:node_name] = node['chef']['config']['node_name']
+  Chef::Config[:client_key] = node['chef']['config']['client_key']
+  Chef::Config[:chef_server_url] = node['chef']['config']['chef_server_root']
 end

@@ -1,4 +1,4 @@
-actions :create, :delete, :edit
+actions :create, :delete, :modify
 default_action :create
 
 attribute :username, :name_attribute => true, :required => true, :kind_of => String 
