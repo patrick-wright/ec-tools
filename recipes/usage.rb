@@ -8,6 +8,9 @@ chef_user "fred" do # name => username
   pem_file '/path/filename.pem' # optional
 end
 
+
+
+
 # chef_org "neworg" do # name => shortname
 #   # action :create # default
 #   description 'New Organization' # optional

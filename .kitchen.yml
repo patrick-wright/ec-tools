@@ -13,3 +13,6 @@ suites:
     run_list:
       - recipe[ec-tools::usage]
     attributes:
+      # chef:
+      #   config:
+      #     chef_server_root: 'https://chef_server_root'
