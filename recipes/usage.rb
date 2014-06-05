@@ -1,12 +1,3 @@
-# create the client key file if private key content is provided
-if node['chef']['config']['private_key_raw']
-  directory File.dirname(node['chef']['config']['client_key'])
-
-  file node['chef']['config']['client_key'] do
-    content node['chef']['config']['private_key_raw']
-  end
-end
-
 # myuser = 'fred20'
 
 # chef_user myuser do # name => username

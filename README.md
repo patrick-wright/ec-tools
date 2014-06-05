@@ -1,23 +1,9 @@
 ec-tools Cookbook
 =================
-TODO: Enter the cookbook description here.
-
-e.g.
-This cookbook makes your favorite breakfast sandwich.
-
-Requirements
-------------
-TODO: List your cookbook requirements. Be sure to include any requirements this cookbook has on platforms, libraries, other cookbooks, packages, operating systems, etc.
-
-e.g.
-#### packages
-- `toaster` - ec-tools needs toaster to brown your bagel.
+Installs Enterprise Chef tools and provides custom resources
 
 Attributes
 ----------
-TODO: List your cookbook attributes here.
-
-e.g.
 #### ec-tools::default
 <table>
   <tr>
@@ -27,35 +13,72 @@ e.g.
     <th>Default</th>
   </tr>
   <tr>
-    <td><tt>['ec-tools']['bacon']</tt></td>
-    <td>Boolean</td>
-    <td>whether to include bacon</td>
-    <td><tt>true</tt></td>
+    <td><tt>['chef']['config']['node_name']</tt></td>
+    <td>String</td>
+    <td>Chef config node name</td>
+    <td><tt>pivotal</tt></td>
+  </tr>
+    <tr>
+    <td><tt>['chef']['config']['client_key']</tt></td>
+    <td>String</td>
+    <td>Chef config client key</td>
+    <td><tt>/etc/opscode/pivotal.pem</tt></td>
+  </tr>
+  </tr>
+    <tr>
+    <td><tt>['chef']['config']['chef_server_root']</tt></td>
+    <td>String</td>
+    <td>Chef config server root</td>
+    <td><tt>https://localhost</tt></td>
+  </tr>
+  </tr>
+  <tr>
+    <td><tt>['chef']['config']['private_key_raw']</tt></td>
+    <td>String</td>
+    <td>Chef config private key string.  Creates ['chef']['config']['client_key'] with provided key value if configured</td>
+    <td><tt>nil</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['knife']['admin']['config']</tt></td>
+    <td>String</td>
+    <td>Knife config file for admin</td>
+    <td><tt>/opt/opscode/embedded/conf/knife-pivotal.rb</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['knife']['admin']['bin']</tt></td>
+    <td>String</td>
+    <td>Knife bin file for admin</td>
+    <td><tt>/opt/opscode/embedded/bin/knife-opc</tt></td>
   </tr>
 </table>
+
 
 Usage
 -----
 #### ec-tools::default
-TODO: Write usage instructions for each cookbook.
+##### knife-opc
+* Adds Chef bin dir to system path
+* Installs the knife-opc gem
+* Creates a knife-opc bin script which is preconfigured and ready to execute
 
-e.g.
-Just include `ec-tools` in your node's `run_list`:
+   ```bash
+   knife-opc user list
+   ```
+* Provides chef_user resource
 
-```json
-{
-  "name":"my_node",
-  "run_list": [
-    "recipe[ec-tools]"
-  ]
-}
+   ```ruby
+   myuser = 'fred'
+
+   chef_user myuser do
+     action :create
+      first_name 'Fred'
+      last_name 'Mercury'
+      email "#{myuser}@getchef.com"
+      password 'bohemian'
+   end
 ```
-
 Contributing
 ------------
-TODO: (optional) If this is a public cookbook, detail the process for contributing. If this is a private cookbook, remove this section.
-
-e.g.
 1. Fork the repository on Github
 2. Create a named feature branch (like `add_component_x`)
 3. Write your change
@@ -65,4 +88,4 @@ e.g.
 
 License and Authors
 -------------------
-Authors: TODO: List authors
+Authors: Patrick Wright
