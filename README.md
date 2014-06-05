@@ -47,7 +47,7 @@ Attributes
   <tr>
     <td><tt>['knife']['admin']['bin']</tt></td>
     <td>String</td>
-    <td>Knife bin file for admin</td>
+    <td>knife-opc bin file</td>
     <td><tt>/opt/opscode/embedded/bin/knife-opc</tt></td>
   </tr>
 </table>
@@ -56,8 +56,9 @@ Attributes
 Usage
 -----
 #### ec-tools::default
-##### knife-opc
 * Adds Chef bin dir to system path
+
+##### knife-opc
 * Installs the knife-opc gem
 * Creates a knife-opc bin script which is preconfigured and ready to execute
 
@@ -77,7 +78,7 @@ Usage
       password 'bohemian'
    end
 ```
-  * When a user is created the private key is saved as databag item (user/fred.json)
+  * When a user is created the private key is saved as a databag item (user/fred.json)
 
 Plans
 -----
