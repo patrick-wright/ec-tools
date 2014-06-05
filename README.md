@@ -70,13 +70,22 @@ Usage
    myuser = 'fred'
 
    chef_user myuser do
-     action :create
+      action :create
       first_name 'Fred'
       last_name 'Mercury'
       email "#{myuser}@getchef.com"
       password 'bohemian'
    end
 ```
+  * When a user is created the private key is saved as databag item (user/fred.json)
+
+Plans
+-----
+* add more knife-opc commands as resources
+* install knife-acl and knife-opc-backup
+* add knife-acl and knife-opc-backup commands as resources
+* chef server status resources (commands as well?)
+
 Contributing
 ------------
 1. Fork the repository on Github
