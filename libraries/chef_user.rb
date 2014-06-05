@@ -11,6 +11,10 @@ module EcTools
         Chef::Config[k] = v
       end
       @rest = Chef::REST.new(config[:chef_server_root])
+      
+      @user_databag = Chef::DataBag.new
+      @user_databag.name('user')
+      @user_databag.save
     end
 
     def create
@@ -27,12 +31,16 @@ module EcTools
 
       Chef::Log.debug("#{@new_resource}:#{response}")
 
-      # preparing for databags
+      # preparing for databag item
       data = {
         "id" => "#{@new_resource.username}",
-        "uri" => response[:uri],
-        "private_key" => response[:private_key]
+        "private_key" => response['private_key']
       }
+
+      databag_item = Chef::DataBagItem.new
+      databag_item.data_bag(@user_databag.name)
+      databag_item.raw_data = data
+      databag_item.save
     end
 
     def delete
