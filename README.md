@@ -65,7 +65,7 @@ Usage
    ```bash
    knife-opc user list
    ```
-* Provides chef_user resource
+* Provides chef_user, chef_org resources
 
    ```ruby
    myuser = 'fred'
@@ -77,8 +77,14 @@ Usage
       email "#{myuser}@getchef.com"
       password 'bohemian'
    end
+
+    chef_org 'neworg' do
+      action :create
+      description 'My Organization'
+      users myuser # associates user with org. Supports String or an Array of users.
+   end
 ```
-  * When a user is created the private key is saved as a databag item (user/fred.json)
+  * When a user is created the private key is saved as a databag item (user/fred.json, org/neworg.json)
 
 Plans
 -----
