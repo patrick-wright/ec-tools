@@ -10,6 +10,6 @@ class Chef::Resource::ChefUser < Chef::Resource::LWRPBase
   attribute :first_name, :required => true, :kind_of => String
   attribute :middle_name, :kind_of => String
   attribute :last_name, :required => true, :kind_of => String
-  attribute :email, :required => true, :kind_of => String # email type?
+  attribute :email, :required => true, :kind_of => String
   attribute :password, :required => true, :kind_of => String
 end
