@@ -1,0 +1,15 @@
+{
+  "id":"neworgrockawesome",
+  "description": "My New Org",
+  "users" : [
+    "rockawesome"
+  ],
+  "groups" : {
+    "admins" : [
+      "rockawesome"
+    ],
+    "billing-admins" : [
+      "rockawesome"
+    ]
+  }
+}
