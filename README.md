@@ -65,34 +65,66 @@ Usage
    ```bash
    knife-opc user list
    ```
-* Provides chef_user, chef_org, chef_group resources
 
-   ```ruby
-   myuser = 'fred'
+#### ec-tools::databags
+user
+```json
+{
+  "id": "rockawesome",
+  "first_name": "Fred",
+  "last_name": "Mercury",
+  "email": "rockawesome@getchef.com",
+  "password": "bohemian"
+}
+```
 
-   chef_user myuser do
-      action :create
-      first_name 'Fred'
-      last_name 'Mercury'
-      email "#{myuser}@getchef.com"
-      password 'bohemian'
+org
+```json
+{
+  "id":"neworgrockawesome",
+  "description": "My New Org",
+  "users" : [
+    "rockawesome"
+  ],
+  "groups" : {
+    "admins" : [
+      "rockawesome"
+    ],
+    "billing-admins" : [
+      "rockawesome"
+    ]
+  }
+}
+```
+
+### Resources
+```ruby
+ myuser = 'fred'
+
+ chef_user myuser do
+    action :create
+    first_name 'Fred'
+    last_name 'Mercury'
+    email "#{myuser}@getchef.com"
+    password 'bohemian'
+ end
+
+  chef_org 'neworg' do
+    action :create
+    description 'My Organization'
+    users myuser # associates user with org. Supports String or an Array of users.
+ end
+
+ [ 'admins', 'billing-admins' ].each do |group|
+   chef_group group do
+     action :add
+     org myuser
+     users [ myuser ]
    end
-
-    chef_org 'neworg' do
-      action :create
-      description 'My Organization'
-      users myuser # associates user with org. Supports String or an Array of users.
-   end
-
-   [ 'admins', 'billing-admins' ].each do |group|
-     chef_group group do
-       action :add
-       org myuser
-       users [ myuser ]
-     end
-   end
+ end
 ```
   * When a user is created the private key is saved as a databag item (user/fred.json, org/neworg.json)
+
 
 Plans
 -----

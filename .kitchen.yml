@@ -11,6 +11,6 @@ platforms:
 suites:
   - name: default
     run_list:
-      - recipe[ec-tools::usage]
+      - recipe[ec-tools::default]
     attributes:
     
