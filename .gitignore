@@ -34,3 +34,5 @@ build/
 .rvmrc
 .kitchen/
 .kitchen.local.yml
+
+/data_bags
