@@ -2,16 +2,16 @@ module EcTools
   class ChefUser
 
     # make this a parent class "or some cool ruby thing" that gets inherited for "opc" classes
-    def initialize(new_resource, config = {}) 
+    def initialize(new_resource, config = {})
       @new_resource = new_resource
-      
+
       # make setting Chef::Config dynamic by iterating through options
       # currently sets chef_server_root (and it doesn't have to)
       config.each do |k, v|
         Chef::Config[k] = v
       end
       @rest = Chef::REST.new(config[:chef_server_root])
-      
+
       @user_databag = Chef::DataBag.new
       @user_databag.name('user')
       @user_databag.save

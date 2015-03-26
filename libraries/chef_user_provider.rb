@@ -8,7 +8,7 @@ class Chef::Provider::ChefUser < Chef::Provider::LWRPBase
   end
 
   action :create do
-    unless chef_user.exists? 
+    unless chef_user.exists?
       converge_by("Create #{ @new_resource }") do
         @chef_user.create
       end
@@ -24,9 +24,9 @@ class Chef::Provider::ChefUser < Chef::Provider::LWRPBase
   end
 
   def chef_user
-    @chef_user ||= EcTools::ChefUser.new(@new_resource, 
-      :node_name => node['chef']['config']['node_name'], 
-      :client_key => node['chef']['config']['client_key'], 
+    @chef_user ||= EcTools::ChefUser.new(@new_resource,
+      :node_name => node['chef']['config']['node_name'],
+      :client_key => node['chef']['config']['client_key'],
       :chef_server_root => node['chef']['config']['chef_server_root'])
   end
 end
