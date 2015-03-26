@@ -1,7 +1,7 @@
 require 'chef/resource/lwrp_base'
 
-class Chef::Resource::ChefUser < Chef::Resource::LWRPBase
-  self.resource_name = 'chef_user'
+class Chef::Resource::EcChefUser < Chef::Resource::LWRPBase
+  self.resource_name = 'ec_chef_user'
 
   actions :create, :delete, :modify
   default_action :create

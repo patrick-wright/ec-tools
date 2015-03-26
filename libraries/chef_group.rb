@@ -1,5 +1,5 @@
 module EcTools
-  class ChefGroup
+  class EcChefGroup
 
     # make this a parent class "or some cool ruby thing" that gets inherited for "opc" classes
     def initialize(new_resource, config = {})

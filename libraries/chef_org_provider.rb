@@ -1,6 +1,6 @@
 require 'chef/provider/lwrp_base'
 
-class Chef::Provider::ChefOrg < Chef::Provider::LWRPBase
+class Chef::Provider::EcChefOrg < Chef::Provider::LWRPBase
   use_inline_resources if defined?(:use_inline_resources)
 
   def whyrun_supported?
@@ -27,7 +27,7 @@ class Chef::Provider::ChefOrg < Chef::Provider::LWRPBase
   end
 
   def chef_org
-    @chef_org ||= EcTools::ChefOrg.new(@new_resource,
+    @chef_org ||= EcTools::EcChefOrg.new(@new_resource,
       :node_name => node['chef']['config']['node_name'],
       :client_key => node['chef']['config']['client_key'],
       :chef_server_root => node['chef']['config']['chef_server_root'])
