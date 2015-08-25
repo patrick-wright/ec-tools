@@ -1,7 +1,7 @@
 require 'chef/resource/lwrp_base'
 
-class Chef::Resource::ChefGroup < Chef::Resource::LWRPBase
-  self.resource_name = 'chef_group'
+class Chef::Resource::EcChefGroup < Chef::Resource::LWRPBase
+  self.resource_name = 'ec_chef_group'
 
   actions :add, :remove # group must currently exist
   default_action :add

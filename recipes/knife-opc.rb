@@ -1,6 +1,8 @@
 include_recipe 'ec-tools::default'
 
-chef_gem 'knife-opc'
+chef_gem 'knife-opc' do
+  compile_time true
+end
 
 # create the client key file if private key content is provided
 if node['chef']['config']['private_key_raw']
